@@ -1,5 +1,5 @@
 ---
-title: Vue2配置的处理方式
+title: Vue2响应式数据处理
 date: 2021-03-21 13:27:05
 tags: Vue
 categories: [前端, Vue]

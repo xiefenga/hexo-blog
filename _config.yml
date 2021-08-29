@@ -132,7 +132,8 @@ deploy:
   #   repo: https://github.com/xiefenga/xiefenga.github.io.git
   #   branch: master
   - type: git
-    repo: git@xiefeng.tech:/var/repo/hexo.git
+    # repo: git@xiefeng.tech:/var/repo/hexo.git
+    repo: git@121.40.222.94:/var/repo/hexo.git
     branch: master
   - type: baidu_url_submitter
 

@@ -110,9 +110,3 @@ React 在组件的生命周期中提供了一系列的钩子函数，可以让�
 精简过的生命周期：
 
 ![](https://xf-blog-imgs.oss-cn-hangzhou.aliyuncs.com/img/image-20201121163052930.png)
-
-# 更新原因
-
-1. `componentWillMount` 函数在某些时候运行多次会导致 bug，例如在该函数中发送网络请求或者启动计时器，并且使用了服务端渲染，则该函数则会运行两次，可能就会导致问题。
-2. `componentWillReceiveProps` 函数不安全，除了性能原因，还有就是有些开发者会写出反模式的代码（数据的来源不单一）
-3. Fiber 架构

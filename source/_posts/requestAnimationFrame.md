@@ -41,7 +41,7 @@ JavaScript 实现动画一般都是采用计时器 `setInterval` / `setTimeout` 
 
 # requestAnimationFrame
 
-使用这个 API 可以请求浏览器在下一个渲染帧执行某个回调（通知浏览器某些 JavaScript 代码要执行动画了），回调是一个要在重绘前调用的函数，在函数中修改 DOM 样式以反映下一次重绘有什么变化。
+使用这个 API 可以请求浏览器在**下一个渲染帧**执行某个回调，回调是一个要在重绘前调用的函数，在函数中修改 DOM 样式以反映下一次重绘有什么变化。
 
 浏览器可以通过最优方式确定重绘的时序（基于当前页面是否可见、CPU的负荷情况、设备绘制间隔等来自行决定最佳的帧速率，不会存在过度绘制的问题（动画掉帧））。
 
@@ -102,42 +102,6 @@ requestIdleCallback(deadline => {
     console.log(deadline.timeRemaining());
 });
 ```
-
-## 渲染帧
-
-浏览器在每一帧所做的事包括：
-
-1. 用户的交互
-2. JS 解析执行
-3. `requestAnimationFrame`
-4. 布局
-5. 绘制
-
-![](http://oss.xiefeng.tech/img/20210313162916.png)
-
-如果某一帧里面要执行的任务不多，在不到16ms 的时间内就完成了上述任务的话，那么这一帧就会有一定的空闲时间，这段时间就恰好可以用来执行 `requestIdleCallback` 的回调。
-
-![](http://oss.xiefeng.tech/img/20210313162939.png)
-
-## 特点
-
-和 `requestAnimationFrame` 的区别：
-
-- `requestAnimationFrame` 的回调会在每一帧确定执行，属于高优先级任务。
-
-- `requestIdleCallback` 的回调在每一帧不一定会执行，属于低优先级任务。
-
-**DOM操作：**
-
-`requestIdleCallback` 回调的执行说明样式变更以及布局计算都已完成。如果执行DOM操作的话，之前所做的布局计算都会失效，而且DOM操作的时间是不可预测的，因此很容易超出当前帧空闲时间的阈值。
-
-而且如果下一帧里有获取布局等操作的话，浏览器就不得不执行强制重排工作，这会极大的影响性能。
-
-推荐的做法是在 `requestAnimationFrame` 里面做DOM修改。
-
-`Promise` 的回调不建议在这里面进行，因为 `Promise` 的回调属于Event loop中优先级较高的一种微任务，会在 `requestIdleCallback` 结束时立即执行，不管此时是否还有富余的时间，这样有很大可能会让一帧超时。
-
-推荐放在 `requestIdleCallback` 里面的应该是一些低优先级的、小块的并且可预测时间的 microTask。
 
 
 

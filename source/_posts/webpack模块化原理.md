@@ -8,7 +8,7 @@ description: webpack模块化原理
 cover: https://xf-blog-imgs.oss-cn-hangzhou.aliyuncs.com/img/20210208123725.png
 ---
 
-# commonjs
+# CommonJS
 
 在webpack中既可以书写commonjs模块也可以书写es模块，而且不用考虑浏览器的兼容性问题，我们来分析一下原理。
 
