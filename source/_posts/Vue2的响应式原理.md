@@ -61,7 +61,7 @@ Vue2 只能针对实现了 `__proto__` 和未实现 `__proto__` 的浏览器分�
 - 对于实现了 `__proto__` 的浏览器直接修改该数组的 `__proto__` 属性让数组继承自 `arrayMethods`
 - 未实现 `__proto__` 的浏览器则将 `arrayMethods` 的那些方法直接定义到数组身上。
 
-![](http://oss.xiefeng.tech/img/20210319205043.png)
+![](https://oss.xiefeng.tech/images/20210906205433.png)
 
 ```javascript
 function protoAugment (target, src: Object) {
