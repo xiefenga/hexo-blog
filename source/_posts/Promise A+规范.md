@@ -56,7 +56,7 @@ description: Promise/A+规范以及简单实现
 
 promise 的 `then` 方法接受两个参数：
 
-```js
+```javascript
 promise.then(onFulfilled, onRejected)
 ```
 
@@ -102,7 +102,7 @@ promise.then(onFulfilled, onRejected)
 
 `then` 方法必须返回一个 `promise` 对象：
 
-```js
+```javascript
 promise2 = promise1.then(onFulfilled, onRejected);
 ```
 
@@ -148,7 +148,7 @@ promise2 = promise1.then(onFulfilled, onRejected);
 
 # Promise 实现
 
-```js
+```javascript
 const PENDING = 'pending';
 
 const FULFILLED = 'fulfilled';
@@ -278,7 +278,7 @@ function resolvePromise(promise, x, resolve, reject) {
 
 2. 添加代码：
 
-	```js
+	```javascript
 	Promise.defer = Promise.deferred = function () {
 	  let dfd = {};
 	  dfd.promise = new Promise((resolve, reject) => {
@@ -293,7 +293,6 @@ function resolvePromise(promise, x, resolve, reject) {
 
 3. 终端运行 `npx promises-aplus-tests .\promise.js`
 
-	![](http://oss.xiefeng.tech/img/20210226181150.png)
 
 **参考列表**
 
